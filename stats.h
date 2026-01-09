@@ -16,7 +16,7 @@
  * and to also sort an array of unsigned int values.
  *
  * @author Jesse Silverman
- * @date 23 December, 2025
+ * @date 6 January, 2026
  *
  */
 #ifndef __STATS_H__

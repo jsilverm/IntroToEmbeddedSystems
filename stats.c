@@ -16,7 +16,7 @@
  * data passed into it, and also calculates a few different data analytics on it.
  *
  * @author Jesse Silverman
- * @date 23 December 2025
+ * @date 6 January 2026
  *
  */
 
@@ -55,15 +55,15 @@ void print_array(unsigned char *data, unsigned int array_size) {
 unsigned char find_median(unsigned char *data, unsigned int array_size) {
 }
 
-/* Given an array of data and a length, returns the mean */
+/* Given an array of data and a length, returns the mean value */
 unsigned char find_mean(unsigned char *data, unsigned int array_size) {
 }
 
-/* Given an array of data and a length, returns the maximum */
+/* Given an array of data and a length, returns the maximum value */
 unsigned char find_maximum(unsigned char *data, unsigned int array_size) {
 }
 
-/* Given an array of data and a length, returns the minimum */
+/* Given an array of data and a length, returns the minimum value */
 unsigned char find_minimum(unsigned char *data, unsigned int array_size) {
 }
 
