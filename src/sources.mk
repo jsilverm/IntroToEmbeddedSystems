@@ -9,9 +9,18 @@
 #
 #*****************************************************************************
 
-# Add your Source files to this variable
-SOURCES =
+ifeq ($(PLATFORM),MSP432)
+# This includes 3 platform sources necessary on the bare metal with no STDLIB
+SOURCES = interrupts_msp432p401r_gcc.c  main.c  memory.c \
+	  startup_msp432p401r_gcc.c  system_msp432p401r.c
+# We need the platform specific includes for CMSIS and this processor model
+INCLUDES = ../include/common ../include/CMSIS ../include/msp432
 
-# Add your include paths to this variable
-INCLUDES = 
+else
+# we don't need the sources specific to the embedded platform, we use STDLIB
+SOURCES = main.c memory.c
 
+# Linux host doesn't need the platform specific includes, we have STDLIB
+INCLUDES = ../include/common
+
+endif
