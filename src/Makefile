@@ -90,7 +90,7 @@ c1m2.out: $(OBJS) $(DEPS)
 	$(CC) $(INCLUDE_FLAGS) -c $(CFLAGS) -MM -MF $@ $^
 
 %.i: %.c
-	$(CC) $(INCLUDE_FLAGS) -E $(CFLAGS) -o main.i $^
+	$(CC) $(INCLUDE_FLAGS) -E $(CFLAGS) -o $@ $^
 
 %.asm: %.c
 	$(CC) $(INCLUDE_FLAGS) -S $(CFLAGS) -o $@ $^
