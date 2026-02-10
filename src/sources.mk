@@ -11,16 +11,19 @@
 
 ifeq ($(PLATFORM),MSP432)
 # This includes 3 platform sources necessary on the bare metal with no STDLIB
-SOURCES = interrupts_msp432p401r_gcc.c  main.c  memory.c \
+#SOURCES = interrupts_msp432p401r_gcc.c  main.c  memory.c \
 	  startup_msp432p401r_gcc.c  system_msp432p401r.c
+SOURCES = main.c  misc.c
+
 # We need the platform specific includes for CMSIS and this processor model
-INCLUDES = ../include/common ../include/CMSIS ../include/msp432
+#INCLUDES = ../include/common ../include/CMSIS ../include/msp432
+INCLUDES = .
 
 else
 # we don't need the sources specific to the embedded platform, we use STDLIB
-SOURCES = main.c memory.c
+SOURCES = main.c misc.c
 
 # Linux host doesn't need the platform specific includes, we have STDLIB
-INCLUDES = ../include/common
+INCLUDES = .
 
 endif

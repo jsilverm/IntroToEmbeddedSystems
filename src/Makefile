@@ -46,7 +46,7 @@ SPECS =
 CC = gcc
 LD = ld
 OBJDUMP = objdump
-LDFLAGS = -Wl,-Map=c1m2.map
+LDFLAGS = -Wl,-Map=c1m3.map
 # no HOST-specific additional CFLAGS, only the common ones
 # CFLAGS += 
 CPPFLAGs = 
@@ -62,7 +62,7 @@ SPECS = --specs=nosys.specs
 CC = /usr/bin/arm-none-eabi-gcc
 LD = /usr/bin/arm-none-eabi-ld
 OBJDUMP = /usr/bin/arm-none-eabi-objdump
-LDFLAGS = -Wl,-Map=c1m2.map -T $(LINKER_FILE) -nostdlib -mfloat-abi=hard -mfpu=fpv4-sp-d16
+LDFLAGS = -Wl,-Map=c1m3.map -T $(LINKER_FILE) -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb $(SPECS)
 CFLAGS += -mcpu=cortex-m4 -mthumb -march=armv7e-m -mfloat-abi=hard \
   -mfpu=fpv4-sp-d16 $(SPECS)
 CPPFLAGs = 
@@ -77,12 +77,12 @@ DEPS := $(SOURCES:.c=.d)
 # This clever trick is kind of similar to the one above but much trickier
 INCLUDE_FLAGS = $(addprefix -I,$(INCLUDES))
 
-# Now our different build targets.  all/c1m2.out is the first and default target
+# Now our different build targets.  all/c1m3.out is the first and default target
 .PHONY: all
-all: c1m2.out
-c1m2.out: $(OBJS) $(DEPS)
-	$(CC) -o c1m2.out $(LDFLAGS) $(OBJS)
-	size c1m2.out
+all: c1m3.out
+c1m3.out: $(OBJS) $(DEPS)
+	$(CC) -o c1m3.out $(LDFLAGS) $(OBJS)
+	size c1m3.out
 
 %.o: %.c
 	$(CC) $(INCLUDE_FLAGS) -c $(CFLAGS) $^
@@ -96,18 +96,18 @@ c1m2.out: $(OBJS) $(DEPS)
 	$(CC) $(INCLUDE_FLAGS) -S $(CFLAGS) -o $@ $^
 	
 %.asm: %.out
-	$(OBJDUMP) --disassemble $^ >$@
+	$(OBJDUMP) -S --disassemble $^ >$@
 
 .PHONY: compile-all
 compile-all: $(SOURCES)
 	$(CC) -c $(INCLUDE_FLAGS) $(CFLAGS) $(SOURCES)
 
 .PHONY: build
-build: c1m2.out
+build: c1m3.out
 
 .PHONY: clean
 clean:
-	rm -f c1m2.map *.o c1m2.out *.asm *.i *.d
+	rm -f c1m3.map *.o c1m3.out *.asm *.i *.d
 
 debug:
 	#@echo "The contents of INC_DIRS is: [$(INC_DIRS)]"
